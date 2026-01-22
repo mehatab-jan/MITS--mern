@@ -147,11 +147,56 @@ function add(){
 }
 add();  
 //ARROW FUNCTION
-var add = ()=>{
-    console.log(10+30);
+var add = (a,b)=>{
+    console.log(a+b);
     
 }
 add();
+add(10,20);
+var c;
+function add(a,b){;
+    c =10
+    console.log(a+b+c);
+    
+}
+add(10,20)
+//hosting
+var z;
+console.log(z);
+//spread operator
+var arr1 = [10,20,30];
+var arr2 = [...arr1,40,50,60];//3 dots are called spread operator
+console.log(arr2);
+//destructuring operator
+var [m1,m2,m3,m4,m5] = [89,90,99,96,87];
+console.log(m1);
+console.log(m2);
+console.log(m3);
+console.log(m4);
+console.log(m5); 
+  var {name,age,dept}= {
+    name:'meha',
+    age:20,
+    dept:['csd','ece'],
+    marks : {
+        mern:90,
+        java:89,
+        c:80
+    }
+  }
+  console.log(name);
+  console.log(age);
+  console.log(dept);
+  console.log(marks);
+  
+  
+  
+  
+
+
+
+
+
 
 
 
