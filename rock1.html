@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RPS</title>
+    <style>
+        input { display: none; }
+
+        label {
+            padding: 10px 20px;
+            background: lightblue;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        #rock:checked ~ .result::after {
+            content: "You chose Rock (Demo only)";
+        }
+        #paper:checked ~ .result::after {
+            content: "You chose Paper (Demo only)";
+        }
+        #scissor:checked ~ .result::after {
+            content: "You chose Scissor (Demo only)";
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Rock Paper Scissors</h1>
+
+<input type="radio" id="rock" name="game">
+<label for="rock">Rock</label>
+
+<input type="radio" id="paper" name="game">
+<label for="paper">Paper</label>
+
+<input type="radio" id="scissor" name="game">
+<label for="scissor">Scissor</label>
+
+<p class="result"></p>
+
+</body>
+</html>
+
