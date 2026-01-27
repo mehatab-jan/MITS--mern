@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// import { BrowserRouter, Route, Routes } from 'react-router-dom'
+// import Navbar from './component/Navbar'
+// import Home from './pages/Home'
+// import Service from './pages/Service'
+// import Contact from './pages/Contact'
+// import About from './pages/About'
+// import Counter from './component/Counter'
+// import Login from './Auth/Login'
+// import UseState from './Hooks/UseState'
 
-function App() {
-  const [count, setCount] = useState(0)
+// const App = () => {
+//   return (
+//     <BrowserRouter>
+//       <Navbar />
 
+//       <Routes>
+//         <Route path='/' element={<Home name="Nammu" />} />
+//         <Route path='/about' element={<About name="Nammu" age={20} dept="CS&DS" />} />
+//         <Route path='/contact' element={<Contact />} />
+//         <Route path='/service' element={<Service />} />
+//         <Route path='/counter' element={<Counter />} />
+//         <Route path='/useState' element={<UseState />} />
+//         <Route path='/login' element={<Login />} />
+//       </Routes>
+//     </BrowserRouter>
+//   )
+// }
+
+// export default App
+import {Routes,Route} from 'react-router-dom'
+import Navbar from './component/Navbar'
+import Home from './Pages/Home'
+import About from './Pages/About'
+import Contact from './Pages/Contact'
+import Service from './Pages/Service'
+import UseState from './Hooks/UseState'
+import Login from './Auth/Login'
+import Hook from './Hooks/Hook'
+import UseEffect from './Hooks/UseEffect'
+import UseEffectApi from './Hooks/UseEffectApi'
+
+const App = () => {
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Navbar/>
+      <Routes>
+        <Route path='/' element={<Home name="Jaaan"/>}/>
+        <Route path='/About' element={<About name="Jaaan" age={20} dept="CSD"/>}></Route>
+        <Route path='/Contact' element={<Contact/>}/>
+        <Route path='/Service' element={<Service/>}/>
+        <Route path='/useState' element={<UseState/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/hook' element={<Hook/>}/>
+        <Route path='/useEffect' element={<UseEffect/>}/>
+        <Route path='/useEffectApi' element={<UseEffectApi/>}/>
+      </Routes>
     </>
   )
 }
 
 export default App
+
