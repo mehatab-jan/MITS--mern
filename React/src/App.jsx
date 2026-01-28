@@ -27,7 +27,7 @@
 // }
 
 // export default App
-import {Routes,Route} from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './component/Navbar'
 import Home from './Pages/Home'
 import About from './Pages/About'
@@ -38,25 +38,34 @@ import Login from './Auth/Login'
 import Hook from './Hooks/Hook'
 import UseEffect from './Hooks/UseEffect'
 import UseEffectApi from './Hooks/UseEffectApi'
+import Signup from './Auth/Signup'
+import UseRef from './Hooks/UseRef'
 
 const App = () => {
   return (
     <>
-      <Navbar/>
+      <Navbar />
+
       <Routes>
-        <Route path='/' element={<Home name="Jaaan"/>}/>
-        <Route path='/About' element={<About name="Jaaan" age={20} dept="CSD"/>}></Route>
-        <Route path='/Contact' element={<Contact/>}/>
-        <Route path='/Service' element={<Service/>}/>
-        <Route path='/useState' element={<UseState/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/hook' element={<Hook/>}/>
-        <Route path='/useEffect' element={<UseEffect/>}/>
-        <Route path='/useEffectApi' element={<UseEffectApi/>}/>
+        <Route path="/" element={<Home name="Jaaan" />} />
+        <Route path="/about" element={<About name="Jaaan" age={20} dept="CSD" />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/service" element={<Service />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+
+        {/* Hooks */}
+        <Route path="/hook" element={<Hook />}>
+          <Route path="useState" element={<UseState />} />
+          <Route path="useEffect" element={<UseEffect />} />
+          <Route path="useEffectApi" element={<UseEffectApi />} />
+          <Route path="useRef" element={<UseRef />} />
+        </Route>
       </Routes>
     </>
   )
 }
 
 export default App
+
 
