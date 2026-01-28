@@ -40,6 +40,7 @@ import UseEffect from './Hooks/UseEffect'
 import UseEffectApi from './Hooks/UseEffectApi'
 import Signup from './Auth/Signup'
 import UseRef from './Hooks/UseRef'
+import UseReducer from './Hooks/UseReducer'
 
 const App = () => {
   return (
@@ -50,7 +51,7 @@ const App = () => {
         <Route path="/" element={<Home name="Jaaan" />} />
         <Route path="/about" element={<About name="Jaaan" age={20} dept="CSD" />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/service" element={<Service />} />
+         <Route path="/services" element={<Service />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
 
@@ -60,6 +61,8 @@ const App = () => {
           <Route path="useEffect" element={<UseEffect />} />
           <Route path="useEffectApi" element={<UseEffectApi />} />
           <Route path="useRef" element={<UseRef />} />
+          <Route path="useReducer" element={<UseReducer />} />
+
         </Route>
       </Routes>
     </>
