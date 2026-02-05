@@ -1,45 +1,73 @@
 let todos = [];
 let id = 1;
 
+const { response } = require("express");
+const Todo = require("../models/todo")
 
-
-exports.getTodo = (request,response)=>{
+exports.getTodo = async(request,response)=>{
      //response.send("get Working")
-    response.status(200).json(todos)
-};
-
-
-
-
-exports.createTodo = (request,response)=>{
-    //response.send("Put Working")
-    const {task} = request.body;
-    const newTodo = {
-        id:id++,
-        task,
-        Completed:true
+    //response.status(200).json(todos)
+    try{
+        const todos =  await Todo.find()
+        response.status(200).json(todos);
+    }catch(err){
+       response.status(500).send(err);
+        
     }
-    todos.push(newTodo)
-    response.json(newTodo)
+
 };
 
-exports.updateTodo = (request,response)=>{
+
+
+
+exports.createTodo =  async(request,response)=>{
+    try{
+
+        const {task} = request.body;
+        if(task===undefined)
+            return response.status(404).json({message:"task not found"});
+        const todos = await Todo.create({
+            task,
+            Completed:false
+        })
+        response.status(201).json(todos);
+    }
+    // todos.push(newTodo)
+    // response.json(newTodo)
+    catch(err){
+        response.status(500).send(err)
+
+    }
+};
+
+
+
+exports.updateTodo = async(request,response)=>{
     //response.send("Update working")
-   const todo =  todos.find((t)=>t.id===parseInt(request.params.id))
+   try{
+    const todo =  await Todo.findById(request.params.id);
    if(!todo){
-    response.json({message:"todo not found"})
+    response.status(404).json({message:"todo not found"})
    }
    todo.task = request.body.task || todo.task;
-   todo.Completed = request.body.Completed === undefined?todo.Completed:request.body.Completed
-   response.json(todo)  
+   todo.completed = request.body.completed === undefined?todo.completed:request.body.completed
+   await todo.save();
+   response.status(200).json(todo)  
+   }
+   catch(err){
+
+    response.status(500).send(err);
+   }
    
 };
 
-exports.deleteTodo = (request,response)=>{
+exports.deleteTodo = async(request,response)=>{
     //response.send("delete working")
-    const  index = todos.findIndex((t)=>t.id===parseInt(request.params.id))
-    if(index===-1)
-        return response.status(404).json({message:"Task not found"})
-    todos=todos.filter((_,i)=>i!==index);
-    response.status(200).json({message:"Task deleted successfully"});
+   try{
+     await Todo.findByIdAndDelete(request.params.id)
+     response.status(200).json({message:"task deleted successfully"});
+   }catch(err){
+    response.status(500).send(err);
+
+   }
 };
