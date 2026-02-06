@@ -1,0 +1,1 @@
+.navbar{display:flex;justify-content:space-around;flex-direction:row}ul{list-style:none;background-color:pink;padding:10px}li{padding:10px;background-color:#a9a9a9;border-radius:10px}li:hover{background-color:#db7093;padding:10px}
