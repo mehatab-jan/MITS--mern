@@ -1,19 +1,9 @@
-import React from 'react';
-import AuthContext from "../context/AuthContext";
+import React from 'react'
 
-
-const AuthProvider = ({ children }) => {
-  const user = {
-    id: 1,
-    name: "mehatab",
-    email: "mehatab661gmail.com",
-  };
-
+const About = () => {
   return (
-    <AuthContext.Provider value={user}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+    <div>About</div>
+  )
+}
 
-export default AuthProvider;
+export default About
