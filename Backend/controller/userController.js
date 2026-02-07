@@ -1,115 +1,58 @@
 // let users = [];
-// let id = 1;
+// let id=1;
 const User = require("../models/user")
-exports.createUser = async(request,response)=>{
-    try{
-        const {name,email} = request.body;
-        const  exist = await User.findOne({email})
+exports.createUser = async (req, res) => {
+    try {
+        const { name, email } = req.body;
+        const exist=await User.findOne({email})
         if(exist)
-            return response.status(401).json({message:"user already exist"})
-   
-       const user =  await User.create({
+            return res.status(401).json({message:"User already exist"})
+        const user = await User.create({
             name,
             email
-
         })
-        response.status(200).json(user);
-    }catch(err){
-        response.status(500).send(err);
+        res.status(200).json(user);
 
+    } catch (err) {
+        res.status(500).send(err);
     }
-        
-    
-    // users.push(newUser);
-    // response.status(200).json(newUser);
 }
-
-exports.getUser = async(request,response)=>{
+exports.getUser = async(req, res) => {
     try{
-        const users = await User.find();
-        response.status(200).json(users)
-
-
+        const users=await User.find();
+        res.status(200).json(users)
     }catch(err){
-        response.status(500).json(err);
-
+        res.status(500).json(err);
     }
-};
-exports.getUserById =  async(request,response)=>{
-
+}
+exports.getUserById = async (req, res) => {
     try{
-        const user = await User.findById(request.params.id);
+        const user = await User.findById(req.params.id);
         if(!user)
-            return response.status(404).json({message:"User not found"})
-        response.status(200).json(user)
-
-
+            return res.status(401).json({message:"User not found"})
+        res.status(200).json(user);
     }catch(err){
-        response.status(500).send(err)
-    }
-
-
-
-
-
-
-
-    // const user = users.find((u)=>u.id===parseInt(request.params.id));
-    // if(user===undefined) 
-    //     return response.status(404).json({message:"user not found"})
-    // response.status(200).json(user)
-};
-exports.editUser = async(request,response)=>{
+        res.status(500).send(err);
+    }   
+}
+exports.editUser =async (req, res) => {
     try{
-       const user =  await  User.findByIdAndUpdate(request.params.id,request.body,{new:true});
-        if(!user)
-            return response.status(404).json({message:"user not found"})
-        response.status(200).json(user)
+        const user=await User.findByIdAndUpdate(req.params.id,req.body,{new:true});
+        if(!user) 
+            return res.status(404).json({message:"user not found"})
+        res.status(200).json(user)
+    }catch(err){
+        res.status(500).send(err);
+    }
     
-
-
-
-    }catch(err){
-        response.status(500).send(err);
-
-    }
-
-
-
-
-
-
-
-
-    // const user = users.find((u)=>u.id===parseInt(request.params.id));
-    // if(user===undefined)
-    //     return response.status(404).json({message:"user not found"});
-    // user.name = request.body.name===undefined?user.name:request.body.name;
-    // user.email = request.body.email || user.email
-    // response.status(200).user.json(user)
-
-};
-exports.deleteUser = async(request,response)=>{
+}
+exports.deleteUser = async(req, res) => {
     try{
-        const user =   await  User.findByIdAndDelete(request.param.id);
-        if(!user)
-            return response.status(404).json({message:"user not found"})
-        response.status(200).json({message:"user delted successfully"})
-       }catch(err){
-        response.status(500).send(err);
-     }
-
-
-
-
-
-
-
-
-
-    // const index = users.findIndex((u)=>u.id===parseInt(request.params.id));
-    // if(index===-1) 
-    //     return response.status(404).json({message:"user not found"});
-    // users = users.filter((u,i)=>i!==index);
-    // response.status(200).json({message:"user deleted successfully"});
-};
+        const user=await User.findByIdAndDelete(req.params.id);
+        if(!user) 
+            return res.status(404).json({message:"user not found"})
+        res.status(200).json({message:"User Deleted Successfully"})
+    }catch(err){
+        res.status(500).send(err);
+    }
+}
